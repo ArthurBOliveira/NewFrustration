@@ -7,16 +7,22 @@ public class Player : MonoBehaviour
     public float jump;
 
     public bool grounded;
+    public bool isDead;
 
     private Rigidbody2D rg2d;
+    private SpriteRenderer rend;
 
     private void Awake()
     {
         rg2d = GetComponent<Rigidbody2D>();
+        rend = GetComponent<SpriteRenderer>();
+        isDead = false;
     }
 
     private void Update()
     {
+        if (isDead) return;
+
         //moving
         float h = Input.GetAxis("Horizontal");
 
@@ -32,8 +38,20 @@ public class Player : MonoBehaviour
     }
 
     public void Die()
-    {
-        throw new NotImplementedException();
+    {        
+        isDead = true;
+        rend.color = Color.gray;
+        rg2d.velocity = Vector2.zero;
+        transform.localScale = new Vector3(0.5f, 0.25f);
+
+        GameObject[] controllers = GameObject.FindGameObjectsWithTag("GameController");
+
+        for(int i = 0; i < controllers.Length; i++)
+        {
+            var aux = controllers[i].GetComponent<LevelController>();
+            if (aux.isActive)
+                aux.RespawnPlayer();
+        }
     }
 
     private void OnCollisionExit2D(Collision2D collider)
