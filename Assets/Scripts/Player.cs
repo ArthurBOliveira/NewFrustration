@@ -38,7 +38,9 @@ public class Player : MonoBehaviour
     }
 
     public void Die()
-    {        
+    {
+        if (isDead) return;
+
         isDead = true;
         rend.color = Color.gray;
         rg2d.velocity = Vector2.zero;
