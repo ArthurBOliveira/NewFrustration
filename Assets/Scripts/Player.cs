@@ -11,11 +11,13 @@ public class Player : MonoBehaviour
 
     private Rigidbody2D rg2d;
     private SpriteRenderer rend;
+    private Animator anim;
 
     private void Awake()
     {
         rg2d = GetComponent<Rigidbody2D>();
         rend = GetComponent<SpriteRenderer>();
+        anim = GetComponent<Animator>();
         isDead = false;
     }
 
@@ -41,10 +43,11 @@ public class Player : MonoBehaviour
     {
         if (isDead) return;
 
+        anim.SetTrigger("Dead");
         isDead = true;
         rend.color = Color.gray;
         rg2d.velocity = Vector2.zero;
-        transform.localScale = new Vector3(0.5f, 0.25f);
+        
 
         GameObject[] controllers = GameObject.FindGameObjectsWithTag("GameController");
 

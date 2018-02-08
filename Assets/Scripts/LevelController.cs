@@ -34,6 +34,7 @@ public class LevelController : MonoBehaviour
 
     public void StartLevel()
     {
+        isActive = true;
         once = false;
         camera.SetActive(true);
         Instantiate(player, initPos.transform.position, Quaternion.identity);
