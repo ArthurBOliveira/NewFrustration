@@ -47,7 +47,9 @@
   </ItemGroup>
   <ItemGroup>
      <Compile Include="Assets\Scripts\LevelController.cs" />
+     <Compile Include="Assets\Scripts\Moving.cs" />
      <Compile Include="Assets\Scripts\Platform.cs" />
+     <Compile Include="Assets\Scripts\PlatformSpawner.cs" />
      <Compile Include="Assets\Scripts\Player.cs" />
  <Reference Include="Facebook.Unity.Settings">
  <HintPath>D:/Unity Projects/NewFrustration/Library/FacebookSDK/Facebook.Unity.Settings.dll</HintPath>
