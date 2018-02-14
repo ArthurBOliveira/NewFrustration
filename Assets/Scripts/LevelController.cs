@@ -9,6 +9,9 @@ public class LevelController : MonoBehaviour
     public GameObject player;
     public GameObject camera;
     public GameObject nextLevel;
+    public GameObject leftButton;
+    public GameObject rightButton;
+    public GameObject jumpButton;
 
     private bool once;
 
