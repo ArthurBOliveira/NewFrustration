@@ -160,6 +160,7 @@ public class Player : MonoBehaviour
 
     public void MovingRight(PointerEventData data, bool b)
     {
+        Debug.Log("Test");
         isMovingRight = b;
         transform.localScale = new Vector3(2, 2, 1);
     }

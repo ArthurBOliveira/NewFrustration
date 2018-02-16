@@ -40,7 +40,8 @@ public class LevelController : MonoBehaviour
         isActive = true;
         once = false;
         camera.SetActive(true);
-        Instantiate(player, initPos.transform.position, Quaternion.identity);
+        GameObject p = Instantiate(player, initPos.transform.position, Quaternion.identity);
+        SetPlayerOnCamera(p);
     }
 
     public void NextLevel()
@@ -52,6 +53,12 @@ public class LevelController : MonoBehaviour
 
     public void RespawnPlayer()
     {
-        Instantiate(player, initPos.transform.position, Quaternion.identity);
+        GameObject p = Instantiate(player, initPos.transform.position, Quaternion.identity);
+        SetPlayerOnCamera(p);
+    }
+
+    public void SetPlayerOnCamera(GameObject player)
+    {
+        camera.GetComponent<CameraFollow>().player = player;
     }
 }
