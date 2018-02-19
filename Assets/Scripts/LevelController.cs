@@ -4,7 +4,10 @@ public class LevelController : MonoBehaviour
 {
     public string name;
     public bool isActive;
-    
+
+    public float camLeftLimit;
+    public float camRightLimit;
+
     public GameObject initPos;
     public GameObject player;
     public GameObject camera;
@@ -39,15 +42,18 @@ public class LevelController : MonoBehaviour
     {
         isActive = true;
         once = false;
-        camera.SetActive(true);
+
+        camera.GetComponent<CameraFollow>().minCameraPos = new Vector3(camLeftLimit, -1.5f, -10);
+        camera.GetComponent<CameraFollow>().maxCameraPos = new Vector3(camRightLimit, 1.5f, -10);
+
         GameObject p = Instantiate(player, initPos.transform.position, Quaternion.identity);
+
         SetPlayerOnCamera(p);
     }
 
     public void NextLevel()
     {
         isActive = false;
-        camera.SetActive(false);
         nextLevel.GetComponent<LevelController>().StartLevel();
     }
 
