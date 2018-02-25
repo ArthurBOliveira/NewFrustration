@@ -8,12 +8,14 @@ public class Platform : MonoBehaviour
     private SpriteRenderer rend;
     private Rigidbody2D rg2d;
     private PolygonCollider2D pc2d;
+    private Animator anim;
 
     private void Awake()
     {
         rend = GetComponent<SpriteRenderer>();
         rg2d = GetComponent<Rigidbody2D>();
         pc2d = GetComponent<PolygonCollider2D>();
+        anim = GetComponent<Animator>();
     }
 
     private void Start()
@@ -30,6 +32,7 @@ public class Platform : MonoBehaviour
 
     private void Update()
     {
+        anim.SetInteger("status", status);
         switch (status)
         {
             case 0:
@@ -60,22 +63,19 @@ public class Platform : MonoBehaviour
 
     private void turnNormal()
     {
-        rend.color = Color.white;
         isKilling = false;
         rg2d.sharedMaterial = new PhysicsMaterial2D() { };
-        pc2d.isTrigger = false;
+        pc2d.isTrigger = false;        
     }
 
     private void turnKilling()
     {
-        rend.color = Color.red;
         isKilling = true;
         rg2d.sharedMaterial = new PhysicsMaterial2D() { };
     }
 
     private void turnBouncy()
     {
-        rend.color = new Color(128, 0, 128); //purple
         isKilling = false;
         rg2d.sharedMaterial = new PhysicsMaterial2D() { bounciness = 2 };
         pc2d.isTrigger = false;
@@ -83,7 +83,6 @@ public class Platform : MonoBehaviour
 
     private void turnIcy()
     {
-        rend.color = Color.cyan;
         isKilling = false;
         rg2d.sharedMaterial = new PhysicsMaterial2D() { friction = 0 };
         pc2d.isTrigger = false;
@@ -91,7 +90,6 @@ public class Platform : MonoBehaviour
 
     private void turnPhantom()
     {
-        rend.color = Color.blue;
         isKilling = false;
         rg2d.sharedMaterial = new PhysicsMaterial2D() { };
         pc2d.isTrigger = true;
