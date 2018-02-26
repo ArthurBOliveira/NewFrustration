@@ -13,6 +13,7 @@ public class Player : MonoBehaviour
     private Rigidbody2D rg2d;
     private SpriteRenderer rend;
     private Animator anim;
+    private BoxCollider2D coll;
 
     public bool isMovingLeft = false;
     public bool isMovingRight = false;
@@ -23,6 +24,7 @@ public class Player : MonoBehaviour
         rg2d = GetComponent<Rigidbody2D>();
         rend = GetComponent<SpriteRenderer>();
         anim = GetComponent<Animator>();
+        coll = GetComponent<BoxCollider2D>();
         isDead = false;
     }
 
@@ -129,6 +131,15 @@ public class Player : MonoBehaviour
             }
         }
     }
+
+    private void CleanObject()
+    {
+        tag = "body";
+        Destroy(rg2d);
+        //Destroy(anim);
+        Destroy(coll);
+        Destroy(this);
+    }
     #endregion
 
     #region Public
@@ -150,6 +161,8 @@ public class Player : MonoBehaviour
             if (aux.isActive)
                 aux.RespawnPlayer();
         }
+
+        CleanObject();
     }
 
     public void MovingLeft(PointerEventData data, bool b)

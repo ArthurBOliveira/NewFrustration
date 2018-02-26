@@ -25,6 +25,8 @@ public class LevelController : MonoBehaviour
 
     private void Update()
     {
+        transform.Rotate(0, 0, Time.deltaTime * 100);
+
         if (once && isActive) StartLevel();
     }
 
