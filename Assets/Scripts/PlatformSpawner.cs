@@ -8,6 +8,7 @@ public class PlatformSpawner : MonoBehaviour
     public float speed;
     public float spawnTime;
     public float despawnTime;
+    public float size;
 
     public GameObject platform;
     public GameObject end;
@@ -43,7 +44,7 @@ public class PlatformSpawner : MonoBehaviour
         GameObject plat = Instantiate(platform, transform.position, Quaternion.identity);
 
         plat.GetComponent<Rigidbody2D>().constraints = RigidbodyConstraints2D.FreezePositionY;
-        plat.transform.localScale = new Vector3(0.5f, plat.transform.localScale.y);
+        plat.transform.localScale = new Vector3(size, plat.transform.localScale.y);
 
         if (left)
             plat.GetComponent<Rigidbody2D>().velocity = Vector2.left * speed;

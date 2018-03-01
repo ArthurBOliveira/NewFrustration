@@ -47,9 +47,13 @@ public class Player : MonoBehaviour
 
         //moving mobile
         if (isMovingRight)
+        {
             rg2d.AddForce(Vector2.right * speed);
+        }
         if (isMovingLeft)
+        {
             rg2d.AddForce(Vector2.left * speed);
+        }
     }
 
     private void OnCollisionStay2D(Collision2D collider)
